@@ -1,12 +1,10 @@
 $(document).ready(function() {
-    // Initialize AOS animation
     AOS.init({
         duration: 800,
         easing: 'ease-in-out',
         once: true
     });
 
-    // Sample event data
     const events = [
         {
             id: 1,
@@ -78,13 +76,10 @@ $(document).ready(function() {
 
    
 
-    // Initialize calendar
     initCalendar([...events]);
 
-    // Display upcoming events with animation
     displayUpcomingEvents(events);
 
-    // Search functionality
     $('#eventSearch').on('input', function() {
         const searchTerm = $(this).val().toLowerCase();
         if (searchTerm.length > 0) {
@@ -99,7 +94,6 @@ $(document).ready(function() {
         }
     });
 
-    // Navbar scroll effect
     $(window).scroll(function() {
         if ($(this).scrollTop() > 30) {
             $('.navbar').addClass('scrolled');
@@ -108,7 +102,6 @@ $(document).ready(function() {
         }
     });
 
-    // Smooth scrolling for anchor links
     $('a[href*="#"]').on('click', function(e) {
         e.preventDefault();
         $('html, body').animate(
@@ -120,7 +113,6 @@ $(document).ready(function() {
         );
     });
 
-    // Function to display upcoming events with animation
     function displayUpcomingEvents(eventsToDisplay) {
         const eventsContainer = $('#eventsContainer');
         eventsContainer.empty();
@@ -161,10 +153,8 @@ $(document).ready(function() {
             eventsContainer.append(eventCard);
         });
 
-        // Reinitialize AOS for new elements
         AOS.refresh();
 
-        // Add click event for details buttons
         $('.view-details').click(function() {
             const eventId = parseInt($(this).data('id'));
             const selectedEvent = [...events].find(e => e.id === eventId);
@@ -172,7 +162,6 @@ $(document).ready(function() {
         });
     }
 
-    // Function to show event details in modal
     function showEventDetails(event) {
         const eventDate = new Date(event.date);
         const formattedDate = eventDate.toLocaleDateString('en-US', { 
@@ -224,11 +213,9 @@ $(document).ready(function() {
         $('#eventModal').modal('show');
     }
 
-    // Function to initialize calendar
-    function initCalendar(allEvents) {
+     function initCalendar(allEvents) {
         const calendarEl = document.getElementById('calendarEl');
         
-        // Format events for FullCalendar
         const calendarEvents = allEvents.map(event => ({
             title: event.title,
             start: event.date,
@@ -259,7 +246,6 @@ $(document).ready(function() {
                 const eventEl = document.createElement('div');
                 eventEl.classList.add('fc-event-main');
                 
-                // Add a dot indicator for the event type
                 const dotEl = document.createElement('span');
                 dotEl.classList.add('event-dot');
                 dotEl.style.backgroundColor = getCategoryColor(arg.event.extendedProps.category);
@@ -273,24 +259,23 @@ $(document).ready(function() {
                 return { domNodes: [eventEl] };
             },
             dayHeaderClassNames: function(arg) {
-                // Add special styling for weekends
                 if (arg.date.getDay() === 0 || arg.date.getDay() === 6) {
                     return ['fc-day-weekend'];
                 }
                 return [];
             },
             dayCellClassNames: function(arg) {
-                // Add special styling for weekends
                 if (arg.date.getDay() === 0 || arg.date.getDay() === 6) {
                     return ['fc-day-weekend'];
                 }
                 return [];
-            }
+            },
+            height: 'auto',
+            contentHeight: 'auto'
         });
 
         calendar.render();
 
-        // Function to get color based on event category
         function getCategoryColor(category) {
             const colors = {
                 'Charity': '#6c63ff',
@@ -305,47 +290,35 @@ $(document).ready(function() {
         }
     }
 
-    // Show success popup when Book Now is clicked
     $(document).on('click', '#eventModal .btn-primary', function(e) {
         e.preventDefault();
         $('#eventModal').modal('hide');
         
-        // Show the success popup
         $('.success-popup').addClass('active');
     });
 
-    // Close the popup when the Done button is clicked
     $(document).on('click', '.close-popup', function() {
         $('.success-popup').removeClass('active');
     });
 
-    // Also close when clicking outside the popup content
     $(document).on('click', '.success-popup', function(e) {
         if ($(e.target).hasClass('success-popup')) {
             $(this).removeClass('active');
         }
     });
 
-    // Contact form submission handler
     $('.contact-form').on('submit', function(e) {
         e.preventDefault();
         
-        // Here you would normally send the form data to your server
-        // For this example, we'll just show the success popup
-        
-        // Show the success popup
         $('.contact-popup').addClass('active');
         
-        // Reset the form
         this.reset();
     });
 
-    // Close the contact popup when OK button is clicked
     $(document).on('click', '.close-contact-popup', function() {
         $('.contact-popup').removeClass('active');
     });
 
-    // Also close when clicking outside the popup content
     $(document).on('click', '.contact-popup', function(e) {
         if ($(e.target).hasClass('contact-popup')) {
             $(this).removeClass('active');
@@ -360,12 +333,10 @@ $(document).ready(function() {
         $(this).find('.modal-content').removeClass().addClass('modal-content animate__animated animate__fadeOutDown');
     });
 
-    // Ripple effect for Book Now button
     $(document).on('click', '.btn-book', function(e) {
         e.preventDefault();
         $('#eventModal').modal('hide');
         
-        // Show your success popup here
         $('.success-popup').addClass('active');
     });
 });
