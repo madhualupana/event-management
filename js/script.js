@@ -9,7 +9,7 @@ $(document).ready(function() {
         {
             id: 1,
             title: "Gala Dinner & Auction",
-            date: "2025-05-13",
+            date: "2025-04-13",
             time: "19:00",
             location: "Gachibowli, Hyderabad",
             description: "An exclusive black-tie gala dinner featuring a live auction of rare art pieces with proceeds going to charity. Enjoy a 5-course meal prepared by Michelin-starred chefs.",
@@ -20,7 +20,7 @@ $(document).ready(function() {
         {
             id: 2,
             title: "Tech Summit 2025",
-            date: "2025-05-15",
+            date: "2025-04-15",
             time: "09:00",
             location: "Gachibowli, Hyderabad",
             description: "The premier technology conference featuring keynote speakers from leading tech companies, workshops, and networking opportunities with industry leaders.",
@@ -31,7 +31,7 @@ $(document).ready(function() {
         {
             id: 3,
             title: "Jazz Night Under the Stars",
-            date: "2025-05-22",
+            date: "2025-04-22",
             time: "20:30",
             location: "Gachibowli, Hyderabad",
             description: "An intimate evening of smooth jazz performances by world-renowned artists in a breathtaking rooftop setting with panoramic city views.",
@@ -42,7 +42,7 @@ $(document).ready(function() {
         {
             id: 4,
             title: "Wine Tasting Masterclass",
-            date: "2025-05-28",
+            date: "2025-04-28",
             time: "18:00",
             location: "Gachibowli, Hyderabad",
             description: "A guided tasting of rare and premium wines from around the world, led by a master sommelier. Includes gourmet cheese pairings.",
@@ -53,7 +53,7 @@ $(document).ready(function() {
         {
             id: 5,
             title: "Fashion Week Preview",
-            date: "2025-05-30",
+            date: "2025-04-30",
             time: "14:00",
             location: "Gachibowli, Hyderabad",
             description: "An exclusive preview of upcoming fashion collections from top designers before they hit the runway. Includes meet-and-greet with designers.",
@@ -64,7 +64,7 @@ $(document).ready(function() {
         {
             id: 6,
             title: "Leadership Workshop",
-            date: "2025-06-28",
+            date: "2025-05-02",
             time: "10:00",
             location: "Gachibowli, Hyderabad",
             description: "A transformative leadership development program led by renowned business coaches and CEOs. Limited to 25 participants for personalized attention.",
@@ -75,7 +75,7 @@ $(document).ready(function() {
         {
             id: 7,
             title: "Hyderabad Food Festival",
-            date: "2025-04-05",
+            date: "2025-05-12",
             time: "11:00",
             location: "Gachibowli, Hyderabad",
             description: "A culinary extravaganza showcasing the best of Hyderabadi cuisine along with international flavors. Live cooking demonstrations by celebrity chefs.",
@@ -86,7 +86,7 @@ $(document).ready(function() {
         {
             id: 8,
             title: "Startup Pitch Competition",
-            date: "2025-04-12",
+            date: "2025-05-18",
             time: "13:00",
             location: "Gachibowli, Hyderabad",
             description: "Witness the most innovative startups pitch their ideas to a panel of top investors. Networking session included with venture capitalists.",
@@ -97,7 +97,7 @@ $(document).ready(function() {
         {
             id: 9,
             title: "Classical Indian Music Concert",
-            date: "2025-04-18",
+            date: "2025-05-19",
             time: "19:30",
             location: "Gachibowli, Hyderabad",
             description: "An evening of enchanting classical ragas performed by Padma award-winning musicians. Traditional seating with authentic ambiance.",
@@ -108,7 +108,7 @@ $(document).ready(function() {
         {
             id: 10,
             title: "AI & Machine Learning Expo",
-            date: "2025-04-22",
+            date: "2025-05-22",
             time: "10:00",
             location: "Gachibowli, Hyderabad",
             description: "Cutting-edge demonstrations of AI technologies, panel discussions with industry experts, and hands-on workshops for all skill levels.",
@@ -119,7 +119,7 @@ $(document).ready(function() {
         {
             id: 11,
             title: "Yoga & Wellness Retreat",
-            date: "2025-04-25",
+            date: "2025-05-25",
             time: "06:30",
             location: "Gachibowli, Hyderabad",
             description: "A full-day holistic wellness experience including yoga sessions, meditation workshops, Ayurvedic consultations, and organic meals.",
@@ -130,7 +130,7 @@ $(document).ready(function() {
         {
             id: 12,
             title: "Contemporary Art Exhibition",
-            date: "2025-05-02",
+            date: "2025-05-30",
             time: "11:00",
             location: "Gachibowli, Hyderabad",
             description: "Showcasing groundbreaking works from emerging and established contemporary artists. Curator talks and artist meet-and-greets available.",
