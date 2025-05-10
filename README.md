@@ -8,5 +8,5 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/infinity-spark-events.git
+   git clone https://github.com/madhualupana/infinity-spark-events.git
    cd infinity-spark-events
