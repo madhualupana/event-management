@@ -72,14 +72,78 @@ $(document).ready(function() {
             price: 450,
             category: "Workshop"
         },
+        {
+            id: 7,
+            title: "Hyderabad Food Festival",
+            date: "2025-04-05",
+            time: "11:00",
+            location: "Gachibowli, Hyderabad",
+            description: "A culinary extravaganza showcasing the best of Hyderabadi cuisine along with international flavors. Live cooking demonstrations by celebrity chefs.",
+            image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            price: 75,
+            category: "Food & Drink"
+        },
+        {
+            id: 8,
+            title: "Startup Pitch Competition",
+            date: "2025-04-12",
+            time: "13:00",
+            location: "Gachibowli, Hyderabad",
+            description: "Witness the most innovative startups pitch their ideas to a panel of top investors. Networking session included with venture capitalists.",
+            image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80",
+            price: 99,
+            category: "Business"
+        },
+        {
+            id: 9,
+            title: "Classical Indian Music Concert",
+            date: "2025-04-18",
+            time: "19:30",
+            location: "Gachibowli, Hyderabad",
+            description: "An evening of enchanting classical ragas performed by Padma award-winning musicians. Traditional seating with authentic ambiance.",
+            image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            price: 150,
+            category: "Music"
+        },
+        {
+            id: 10,
+            title: "AI & Machine Learning Expo",
+            date: "2025-04-22",
+            time: "10:00",
+            location: "Gachibowli, Hyderabad",
+            description: "Cutting-edge demonstrations of AI technologies, panel discussions with industry experts, and hands-on workshops for all skill levels.",
+            image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80",
+            price: 299,
+            category: "Technology"
+        },
+        {
+            id: 11,
+            title: "Yoga & Wellness Retreat",
+            date: "2025-04-25",
+            time: "06:30",
+            location: "Gachibowli, Hyderabad",
+            description: "A full-day holistic wellness experience including yoga sessions, meditation workshops, Ayurvedic consultations, and organic meals.",
+            image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            price: 175,
+            category: "Health"
+        },
+        {
+            id: 12,
+            title: "Contemporary Art Exhibition",
+            date: "2025-05-02",
+            time: "11:00",
+            location: "Gachibowli, Hyderabad",
+            description: "Showcasing groundbreaking works from emerging and established contemporary artists. Curator talks and artist meet-and-greets available.",
+            image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1504&q=80",
+            price: 90,
+            category: "Art"
+        },
     ];
 
-   
-
     initCalendar([...events]);
-
     displayUpcomingEvents(events);
 
+    // Search functionality
     $('#eventSearch').on('input', function() {
         const searchTerm = $(this).val().toLowerCase();
         if (searchTerm.length > 0) {
@@ -88,12 +152,13 @@ $(document).ready(function() {
                 event.description.toLowerCase().includes(searchTerm) ||
                 event.category.toLowerCase().includes(searchTerm)
             );
-            displayUpcomingEvents(filteredEvents);
+            displayUpcomingEvents(filteredEvents, true); 
         } else {
-            displayUpcomingEvents(events);
+            displayUpcomingEvents(events); 
         }
     });
 
+    // Navbar scroll effect
     $(window).scroll(function() {
         if ($(this).scrollTop() > 30) {
             $('.navbar').addClass('scrolled');
@@ -102,6 +167,7 @@ $(document).ready(function() {
         }
     });
 
+    // Smooth scrolling
     $('a[href*="#"]').on('click', function(e) {
         e.preventDefault();
         $('html, body').animate(
@@ -113,16 +179,18 @@ $(document).ready(function() {
         );
     });
 
-    function displayUpcomingEvents(eventsToDisplay) {
+    function displayUpcomingEvents(eventsToDisplay, showAll = false) {
         const eventsContainer = $('#eventsContainer');
         eventsContainer.empty();
-
-        if (eventsToDisplay.length === 0) {
+    
+        const filteredEvents = showAll ? eventsToDisplay : eventsToDisplay.filter(event => !isPastEvent(event.date));
+    
+        if (filteredEvents.length === 0) {
             eventsContainer.html('<div class="col-12 text-center py-5"><h4>No events found matching your search</h4></div>');
             return;
         }
-
-        eventsToDisplay.forEach((event, index) => {
+    
+        filteredEvents.forEach((event, index) => {
             const eventDate = new Date(event.date);
             const formattedDate = eventDate.toLocaleDateString('en-US', { 
                 weekday: 'long', 
@@ -130,10 +198,11 @@ $(document).ready(function() {
                 day: 'numeric',
                 year: 'numeric'
             });
-
+    
             const eventCard = `
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="${index * 100}">
-                    <div class="card event-card h-100">
+                    <div class="card event-card h-100 ${isPastEvent(event.date) ? 'past-event' : ''}">
+                        ${isPastEvent(event.date) ? '<div class="past-event-banner">Completed</div>' : ''}
                         <div class="event-img">
                             <img src="${event.image}" alt="${event.title}" class="img-fluid">
                             <div class="event-category">${event.category}</div>
@@ -152,9 +221,9 @@ $(document).ready(function() {
             `;
             eventsContainer.append(eventCard);
         });
-
+    
         AOS.refresh();
-
+    
         $('.view-details').click(function() {
             const eventId = parseInt($(this).data('id'));
             const selectedEvent = [...events].find(e => e.id === eventId);
@@ -170,7 +239,7 @@ $(document).ready(function() {
             day: 'numeric',
             year: 'numeric'
         });
-
+    
         const modalContent = `
             <div class="row">
                 <div class="col-md-6 mb-4 mb-md-0">
@@ -207,13 +276,27 @@ $(document).ready(function() {
                 </div>
             </div>
         `;
-
+    
         $('#eventModalTitle').text(event.title);
         $('#eventModalBody').html(modalContent);
+        
+        $('#eventModal').off('click', '.btn-primary');
+        
+        $('#eventModal').on('click', '.btn-primary', function(e) {
+            e.preventDefault();
+            
+            if (isPastEvent(event.date)) {
+                showCustomPopup("Sorry, this event has already completed", "This event is in the past and cannot be booked.");
+            } else {
+                $('#eventModal').modal('hide');
+                $('.success-popup').addClass('active');
+            }
+        });
+        
         $('#eventModal').modal('show');
     }
 
-     function initCalendar(allEvents) {
+    function initCalendar(allEvents) {
         const calendarEl = document.getElementById('calendarEl');
         
         const calendarEvents = allEvents.map(event => ({
@@ -290,13 +373,7 @@ $(document).ready(function() {
         }
     }
 
-    $(document).on('click', '#eventModal .btn-primary', function(e) {
-        e.preventDefault();
-        $('#eventModal').modal('hide');
-        
-        $('.success-popup').addClass('active');
-    });
-
+    // Popup handlers
     $(document).on('click', '.close-popup', function() {
         $('.success-popup').removeClass('active');
     });
@@ -309,9 +386,7 @@ $(document).ready(function() {
 
     $('.contact-form').on('submit', function(e) {
         e.preventDefault();
-        
         $('.contact-popup').addClass('active');
-        
         this.reset();
     });
 
@@ -325,6 +400,7 @@ $(document).ready(function() {
         }
     });
 
+    // Modal animation handlers
     $('#eventModal').on('show.bs.modal', function() {
         $(this).find('.modal-content').removeClass().addClass('modal-content animate__animated animate__fadeInUp');
     });
@@ -333,10 +409,39 @@ $(document).ready(function() {
         $(this).find('.modal-content').removeClass().addClass('modal-content animate__animated animate__fadeOutDown');
     });
 
-    $(document).on('click', '.btn-book', function(e) {
-        e.preventDefault();
-        $('#eventModal').modal('hide');
+    function showCustomPopup(title, message) {
+        const popupContent = `
+            <div class="popup-content">
+                <div class="animation-container">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <h3>${title}</h3>
+                <p>${message}</p>
+                <button class="btn btn-primary close-custom-popup">OK</button>
+            </div>
+        `;
         
-        $('.success-popup').addClass('active');
-    });
+        const $customPopup = $('<div class="custom-popup"></div>').html(popupContent);
+        $('body').append($customPopup);
+        $customPopup.addClass('active');
+        
+        $(document).on('click', '.close-custom-popup', function() {
+            $customPopup.remove();
+        });
+        
+        $customPopup.on('click', function(e) {
+            if ($(e.target).hasClass('custom-popup')) {
+                $customPopup.remove();
+            }
+        });
+    }
+
+    function isPastEvent(eventDate) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const eventDateObj = new Date(eventDate);
+        return eventDateObj < today;
+    }
 });
